@@ -142,9 +142,6 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex gap-6">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors"><Instagram size={24} /></a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={24} /></a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors"><Mail size={24} /></a>
           </div>
         </div>
       </div>
