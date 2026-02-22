@@ -2,10 +2,12 @@ import React from 'react';
 import { Check, Zap, Target, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../lib/i18n/LanguageContext';
+import { useDevice } from '../lib/DeviceContext';
 
 
 export const Pricing: React.FC = () => {
   const { t } = useLanguage();
+  const { isMobile } = useDevice();
 
   const plans = [
     {
@@ -37,14 +39,18 @@ export const Pricing: React.FC = () => {
     }
   ];
 
+  const MotionOrDiv = isMobile ? 'div' : motion.div;
+
   return (
     <section id="pricing" className="py-32 bg-[#050505] border-t border-white/5">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8 }}
+        <MotionOrDiv
+          {...(!isMobile && {
+            initial: { opacity: 0, scale: 0.9 },
+            whileInView: { opacity: 1, scale: 1 },
+            viewport: { once: true, amount: 0.1 },
+            transition: { duration: 0.8 }
+          })}
           className="text-center mb-24"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tighter">
@@ -54,16 +60,18 @@ export const Pricing: React.FC = () => {
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             {t('pricing', 'subtitle')}
           </p>
-        </motion.div>
+        </MotionOrDiv>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {plans.map((plan, index) => (
-            <motion.div
+            <MotionOrDiv
               key={index}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ delay: index * 0.1, duration: 0.6, type: "spring", stiffness: 100 }}
+              {...(!isMobile && {
+                initial: { opacity: 0, y: 50, scale: 0.9 },
+                whileInView: { opacity: 1, y: 0, scale: 1 },
+                viewport: { once: true, amount: 0.1 },
+                transition: { delay: index * 0.1, duration: 0.6, type: "spring", stiffness: 100 }
+              })}
               className={`relative p-8 rounded-2xl border ${plan.highlight
                 ? 'border-indigo-500 bg-indigo-900/10 shadow-[0_0_50px_-12px_rgba(99,102,241,0.2)]'
                 : 'border-white/10 bg-[#0a0a0a]'
@@ -107,14 +115,16 @@ export const Pricing: React.FC = () => {
                   {t('pricing', 'schedule_btn')}
                 </a>
               </div>
-            </motion.div>
+            </MotionOrDiv>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+        <MotionOrDiv
+          {...(!isMobile && {
+            initial: { opacity: 0 },
+            whileInView: { opacity: 1 },
+            transition: { delay: 0.8 }
+          })}
           className="mt-16 text-center space-y-2"
         >
           <p className="text-gray-400 font-medium">
@@ -123,7 +133,7 @@ export const Pricing: React.FC = () => {
           <p className="text-gray-500 text-sm">
             {t('pricing', 'custom_desc')}
           </p>
-        </motion.div>
+        </MotionOrDiv>
       </div>
     </section>
   );

@@ -2,16 +2,17 @@ import React from 'react';
 import { PenTool, Layout, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../lib/i18n/LanguageContext';
+import { useDevice } from '../lib/DeviceContext';
 
 export const Services: React.FC = () => {
   const { t } = useLanguage();
+  const { isMobile } = useDevice();
 
   const services = [
     {
       icon: PenTool,
       title: t('services', 's1_title'),
       description: t('services', 's1_desc'),
-      // JSON strings parsed to array
       tags: t('services', 's1_tags') as unknown as string[]
     },
     {
@@ -27,14 +28,19 @@ export const Services: React.FC = () => {
       tags: t('services', 's3_tags') as unknown as string[]
     }
   ];
+
+  const MotionOrDiv = isMobile ? 'div' : motion.div;
+
   return (
     <section id="services" className="py-32 bg-[#050505] perspective-1000">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8 }}
+        <MotionOrDiv
+          {...(!isMobile && {
+            initial: { opacity: 0, y: 50 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true, amount: 0.1 },
+            transition: { duration: 0.8 }
+          })}
           className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8"
         >
           <h2 className="text-4xl md:text-7xl font-bold tracking-tighter max-w-3xl">
@@ -43,16 +49,18 @@ export const Services: React.FC = () => {
           <p className="text-gray-400 text-lg max-w-sm pb-2 border-b border-gray-800">
             {t('services', 'subtitle')}
           </p>
-        </motion.div>
+        </MotionOrDiv>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <motion.div
+            <MotionOrDiv
               key={index}
-              initial={{ opacity: 0, rotateX: 45, y: 50 }}
-              whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ delay: index * 0.1, duration: 0.6, type: "spring", bounce: 0.3 }}
+              {...(!isMobile && {
+                initial: { opacity: 0, rotateX: 45, y: 50 },
+                whileInView: { opacity: 1, rotateX: 0, y: 0 },
+                viewport: { once: true, amount: 0.1 },
+                transition: { delay: index * 0.1, duration: 0.6, type: "spring", bounce: 0.3 }
+              })}
               className="group relative p-8 h-full min-h-[400px] flex flex-col justify-between border border-white/10 rounded-xl bg-[#0a0a0a] hover:bg-[#0f0f0f] transition-colors hover:border-indigo-500/30"
             >
               <div>
@@ -72,7 +80,7 @@ export const Services: React.FC = () => {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </MotionOrDiv>
           ))}
         </div>
       </div>

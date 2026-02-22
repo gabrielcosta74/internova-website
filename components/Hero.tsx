@@ -118,8 +118,9 @@ export const Hero: React.FC = () => {
           >
             <div className="absolute inset-0 bg-blue-500/10 z-10 mix-blend-overlay"></div>
             <img
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?fm=webp&q=60&w=600"
               alt={t('hero', 'card1_title')}
+              loading="eager"
               className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
             />
             <div className="absolute bottom-0 left-0 w-full bg-black/80 backdrop-blur-sm p-3 border-t border-white/10">
@@ -158,8 +159,9 @@ export const Hero: React.FC = () => {
           >
             <div className="absolute inset-0 bg-emerald-500/10 z-10 mix-blend-overlay"></div>
             <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?fm=webp&q=60&w=800"
               alt={t('hero', 'card3_title')}
+              loading="eager"
               className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
             />
           </motion.div>
