@@ -1,0 +1,142 @@
+{
+    "nav": {
+        "consulting": "Consulting",
+        "results": "Results",
+        "solutions": "Solutions",
+        "schedule": "Schedule"
+    },
+    "hero": {
+        "badge": "Digital Solutions & Automation",
+        "title1": "Attract More Clients.",
+        "title2": "Work Less.",
+        "description": "We build optimized websites, manage Google ad campaigns, and automate repetitive tasks. The result? More sales with much less manual effort on your part.",
+        "cta_primary": "View Solutions",
+        "cta_secondary": "How It Works",
+        "card1_title": "Optimized Websites",
+        "card2_title": "Google Campaigns",
+        "card2_desc": "Top of search results right when clients are looking for your services.",
+        "card3_title": "Performance Analysis",
+        "card4_title": "Task Automation",
+        "card4_desc": "Requests and clients managed without manual effort.",
+        "ticker1_title": "More Presence",
+        "ticker1_desc": "Optimized Websites",
+        "ticker2_title": "More Sales",
+        "ticker2_desc": "Google Ads",
+        "ticker3_title": "Less Work",
+        "ticker3_desc": "Automated Processes",
+        "ticker4_title": "Real Return",
+        "ticker4_desc": "Proven Results"
+    },
+    "comparison": {
+        "title1": "The Difference Between",
+        "title2": "'Having a Website'",
+        "title3": "and 'Having a Strategy'",
+        "subtitle": "Most businesses have internet expenses. Our clients have profit.",
+        "traditional_title": "Traditional Approach",
+        "traditional_points": [
+            "Investment in 'showcase sites' that don't generate sales",
+            "Generic positioning without market differentiation",
+            "Invisible to those actively searching for your services",
+            "Total dependence on referrals and word-of-mouth",
+            "Manual processes that consume valuable team time"
+        ],
+        "internova_title": "Internova Method",
+        "internova_points": [
+            "Authority brand that allows charging higher prices",
+            "Automated sales funnel optimized for conversion",
+            "Local dominance in Google searches (SEO)",
+            "Persuasive communication focused on client pain points",
+            "Automation of repetitive tasks to free up time"
+        ]
+    },
+    "services": {
+        "title1": "360º Consulting for",
+        "title2": "Your Business",
+        "subtitle": "We identify bottlenecks, optimize processes, and implement the right technology to scale your revenue.",
+        "s1_title": "Branding & Positioning",
+        "s1_desc": "It's not just a logo. We create a visual identity that conveys authority and justifies higher prices. Your brand must inspire immediate trust.",
+        "s1_tags": [
+            "Visual Identity",
+            "Brand Strategy",
+            "Authority"
+        ],
+        "s2_title": "Strategic Web Design",
+        "s2_desc": "More than a pretty site. A commercial tool that works 24/7 to capture and convert visitors into clients. Optimized for sales and automation.",
+        "s2_tags": [
+            "Sales Funnels",
+            "High Conversion",
+            "Automation"
+        ],
+        "s3_title": "Growth Consulting",
+        "s3_desc": "We analyze your operational bottlenecks and implement systems to attract more clients and reduce manual work. Total focus on ROI.",
+        "s3_tags": [
+            "Local SEO",
+            "Process Optimization",
+            "Scale"
+        ]
+    },
+    "pricing": {
+        "title1": "Solutions that",
+        "title2": "pay for themselves.",
+        "subtitle": "We don’t just sell websites. We build systems that bring in clients and organize your day-to-day.",
+        "popular_badge": "Most Popular",
+        "schedule_btn": "Schedule Diagnostics",
+        "custom_title": "Need something custom?",
+        "custom_desc": "We work with budgets tailored to each business's reality.",
+        "p1_name": "Presence & Authority",
+        "p1_tagline": "For those who want to stop losing clients due to lack of credibility.",
+        "p1_desc": "Ideal for businesses that need a solid and professional foundation to start growing.",
+        "p1_features": [
+            "High-Conversion Landing Page",
+            "Persuasive Copywriting",
+            "Strategic Action Buttons",
+            "Professional Email Setup",
+            "Basic Google Optimization",
+            "Premium and Exclusive Design"
+        ],
+        "p1_benefit": "Transmit immediate trust to those looking for you.",
+        "p2_name": "Growth & Traffic",
+        "p2_tagline": "For those who want a constant flow of new clients.",
+        "p2_desc": "Focused on attracting qualified visitors and converting them into automated sales.",
+        "p2_features": [
+            "Strategic Multi-Page Website",
+            "Review Management System",
+            "Simple CRM Integration",
+            "Advanced Local SEO Optimization",
+            "Automated Responses (WhatsApp)",
+            "Sales Metrics Dashboard"
+        ],
+        "p2_benefit": "Transform visitors into paying clients.",
+        "p3_name": "Scale & Automation",
+        "p3_tagline": "Your operation running on autopilot.",
+        "p3_desc": "Complete consulting to dominate the market and reduce operational load.",
+        "p3_features": [
+            "Complete Digital Ecosystem",
+            "Scheduling Automation",
+            "Lead Nurturing (Email Marketing)",
+            "Process Consulting",
+            "Custom Integrations (API)",
+            "Strategic Tracking"
+        ],
+        "p3_benefit": "Free up your time while the system sells for you."
+    },
+    "footer": {
+        "title1": "Ready to scale",
+        "title2": "your business?",
+        "subtitle": "Schedule a free strategic session. No commitment, just clarity on the next step.",
+        "form_title": "Talk to a Consultant",
+        "form_name": "Name",
+        "form_name_placeholder": "Your name",
+        "form_email": "Email",
+        "form_email_placeholder": "your@email.com",
+        "form_challenge": "Current Challenge",
+        "form_challenge_placeholder": "What is the biggest obstacle for your business today?",
+        "form_submit": "Request Analysis",
+        "form_submitting": "Sending...",
+        "form_success": "Request sent successfully! We will contact you shortly.",
+        "form_error_empty": "Please fill in all fields.",
+        "form_error_submit": "An error occurred while sending the request. Please try again later.",
+        "form_sent": "Sent",
+        "rights": "All rights reserved."
+    }
+}

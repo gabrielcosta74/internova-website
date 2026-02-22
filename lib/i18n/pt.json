@@ -1,0 +1,142 @@
+{
+    "nav": {
+        "consulting": "Consultoria",
+        "results": "Resultados",
+        "solutions": "Soluções",
+        "schedule": "Agendar"
+    },
+    "hero": {
+        "badge": "Soluções Digitais & Automação",
+        "title1": "Atraia Mais Clientes.",
+        "title2": "Trabalhe Menos.",
+        "description": "Criamos websites otimizados, gerimos campanhas no Google e automatizamos processos repetitivos. O resultado? Mais vendas com muito menos esforço manual da sua parte.",
+        "cta_primary": "Ver Soluções",
+        "cta_secondary": "Como Funciona?",
+        "card1_title": "Websites Otimizados",
+        "card2_title": "Campanhas Google",
+        "card2_desc": "Topos nas pesquisas nos momentos em que o cliente procura pelos seus serviços.",
+        "card3_title": "Análise de Desempenho",
+        "card4_title": "Automação de Tarefas",
+        "card4_desc": "Pedidos e clientes geridos sem esforço manual.",
+        "ticker1_title": "Mais Presença",
+        "ticker1_desc": "Websites Otimizados",
+        "ticker2_title": "Mais Vendas",
+        "ticker2_desc": "Anúncios no Google",
+        "ticker3_title": "Menos Trabalho",
+        "ticker3_desc": "Processos Automatizados",
+        "ticker4_title": "Retorno Real",
+        "ticker4_desc": "Resultados Comprovados"
+    },
+    "comparison": {
+        "title1": "A Diferença entre",
+        "title2": "'Ter um Site'",
+        "title3": "e 'Ter uma Estratégia'",
+        "subtitle": "A maioria das empresas tem custos com a internet. Os nossos clientes têm lucro.",
+        "traditional_title": "Abordagem Tradicional",
+        "traditional_points": [
+            "Investimento em 'sites montra' que não geram vendas",
+            "Posicionamento genérico e sem diferenciação no mercado",
+            "Invisível para quem procura ativamente os seus serviços",
+            "Dependência total de referências e 'boca-a-boca'",
+            "Processos manuais que consomem tempo valioso da equipa"
+        ],
+        "internova_title": "Método Internova",
+        "internova_points": [
+            "Marca com autoridade que permite cobrar preços mais altos",
+            "Funil de vendas automático e otimizado para conversão",
+            "Domínio local nas pesquisas do Google (SEO)",
+            "Comunicação persuasiva focada nas dores do cliente",
+            "Automação de tarefas repetitivas para libertar tempo"
+        ]
+    },
+    "services": {
+        "title1": "Consultoria 360º para o",
+        "title2": "Seu Negócio",
+        "subtitle": "Identificamos gargalos, otimizamos processos e implementamos a tecnologia certa para escalar a sua faturação.",
+        "s1_title": "Branding & Posicionamento",
+        "s1_desc": "Não é apenas um logótipo. Criamos uma identidade visual que transmite autoridade e justifica preços mais altos. A sua marca deve inspirar confiança imediata.",
+        "s1_tags": [
+            "Identidade Visual",
+            "Estratégia de Marca",
+            "Autoridade"
+        ],
+        "s2_title": "Web Design Estratégico",
+        "s2_desc": "Mais do que um site bonito. Uma ferramenta comercial que funciona 24/7 para captar e converter visitantes em clientes. Otimizado para vendas e automação.",
+        "s2_tags": [
+            "Funis de Venda",
+            "Alta Conversão",
+            "Automação"
+        ],
+        "s3_title": "Consultoria de Crescimento",
+        "s3_desc": "Analisamos os gargalos da sua operação e implementamos sistemas para atrair mais clientes e reduzir o trabalho manual. Foco total no ROI.",
+        "s3_tags": [
+            "SEO Local",
+            "Otimização de Processos",
+            "Escala"
+        ]
+    },
+    "pricing": {
+        "title1": "Soluções que se",
+        "title2": "pagam a elas mesmas.",
+        "subtitle": "Não vendemos apenas sites. Construímos sistemas que trazem clientes e organizam o seu dia-a-dia.",
+        "popular_badge": "Mais Escolhido",
+        "schedule_btn": "Agendar Diagnóstico",
+        "custom_title": "Precisa de algo por medida?",
+        "custom_desc": "Trabalhamos com orçamentos ajustados à realidade de cada negócio.",
+        "p1_name": "Presença & Autoridade",
+        "p1_tagline": "Para quem quer deixar de perder clientes por falta de credibilidade.",
+        "p1_desc": "Ideal para negócios que precisam de uma base sólida e profissional para começar a crescer.",
+        "p1_features": [
+            "Landing Page de Alta Conversão",
+            "Copywriting Persuasivo",
+            "Botões de Ação Estratégicos",
+            "Configuração Profissional de Email",
+            "Otimização Básica para Google",
+            "Design Premium e Exclusivo"
+        ],
+        "p1_benefit": "Transmita confiança imediata a quem o procura.",
+        "p2_name": "Crescimento & Tráfego",
+        "p2_tagline": "Para quem quer um fluxo constante de novos clientes.",
+        "p2_desc": "Focado em atrair visitantes qualificados e convertê-los em vendas automáticas.",
+        "p2_features": [
+            "Site Estratégico Multi-Página",
+            "Sistema de Gestão de Reviews",
+            "Integração com CRM Simples",
+            "Otimização SEO Local Avançada",
+            "Automação de Respostas (WhatsApp)",
+            "Painel de Métricas de Venda"
+        ],
+        "p2_benefit": "Transforme visitantes em clientes pagadores.",
+        "p3_name": "Escala & Automação",
+        "p3_tagline": "A sua operação a funcionar em piloto automático.",
+        "p3_desc": "Consultoria completa para dominar o mercado e reduzir a carga operacional.",
+        "p3_features": [
+            "Ecossistema Digital Completo",
+            "Automação de Agendamentos",
+            "Nutrição de Leads (Email Marketing)",
+            "Consultoria de Processos",
+            "Integrações Personalizadas (API)",
+            "Acompanhamento Estratégico"
+        ],
+        "p3_benefit": "Liberte o seu tempo enquanto o sistema vende por si."
+    },
+    "footer": {
+        "title1": "Pronto para escalar",
+        "title2": "o seu negócio?",
+        "subtitle": "Agende uma sessão estratégica gratuita. Sem compromisso, apenas clareza sobre o próximo passo.",
+        "form_title": "Fale com um Consultor",
+        "form_name": "Nome",
+        "form_name_placeholder": "Seu nome",
+        "form_email": "Email",
+        "form_email_placeholder": "seu@email.com",
+        "form_challenge": "Desafio Atual",
+        "form_challenge_placeholder": "Qual é o maior obstáculo do seu negócio hoje?",
+        "form_submit": "Solicitar Análise",
+        "form_submitting": "A Enviar...",
+        "form_success": "Pedido enviado com sucesso! Entraremos em contacto em breve.",
+        "form_error_empty": "Por favor, preencha todos os campos.",
+        "form_error_submit": "Ocorreu um erro ao enviar o pedido. Tente novamente mais tarde.",
+        "form_sent": "Enviado",
+        "rights": "Todos os direitos reservados."
+    }
+}
