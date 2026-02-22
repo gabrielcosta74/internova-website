@@ -73,18 +73,27 @@ export const Hero: React.FC = () => {
   // Mouse Top (-1) -> Rotate X Negative (tips top towards viewer)
   const rotateX = useTransform(ySpring, [-1, 1], ["-7deg", "7deg"]);
 
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div
       id="top"
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 perspective-1000"
-      style={{ perspective: '1200px' }} // Adds 3D depth perspective
+      onMouseMove={isMobile ? undefined : handleMouseMove}
+      onMouseLeave={isMobile ? undefined : handleMouseLeave}
+      className={`relative min-h-[90vh] pb-32 xl:min-h-screen xl:pb-0 flex items-center justify-center overflow-hidden pt-20 ${isMobile ? '' : 'perspective-1000'}`}
+      style={isMobile ? {} : { perspective: '1200px' }} // Adds 3D depth perspective only on desktop
     >
       {/* Dynamic Background Layer */}
       <motion.div
-        style={{ x: bgX, y: bgY, scale: 1.15 }}
+        style={isMobile ? {} : { x: bgX, y: bgY, scale: 1.15 }}
         className="absolute inset-0 z-0 will-change-transform"
       >
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1a1a2e] via-[#050505] to-[#000000]" />
@@ -94,82 +103,84 @@ export const Hero: React.FC = () => {
       </motion.div>
 
       {/* Floating Elements Container - Applies 3D Rotation */}
-      <motion.div
-        style={{ rotateX, rotateY }}
-        className="absolute inset-0 z-10 pointer-events-none hidden xl:block preserve-3d will-change-transform"
-      >
-
-        {/* === LEFT SIDE === */}
-
-        {/* Card 1: Strategy (Mid-ground) */}
+      {!isMobile && (
         <motion.div
-          style={{ x: midX, y: midY, z: 50 }}
-          className="absolute top-[15%] left-[5%] 2xl:left-[10%] w-72 h-48 rounded-2xl overflow-hidden shadow-2xl rotate-[-6deg] border border-white/10 z-10 bg-[#111]"
+          style={{ rotateX, rotateY }}
+          className="absolute inset-0 z-10 pointer-events-none hidden xl:block preserve-3d will-change-transform"
         >
-          <div className="absolute inset-0 bg-blue-500/10 z-10 mix-blend-overlay"></div>
-          <img
-            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
-            alt={t('hero', 'card1_title')}
-            className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
-          />
-          <div className="absolute bottom-0 left-0 w-full bg-black/80 backdrop-blur-sm p-3 border-t border-white/10">
-            <p className="text-xs font-semibold text-white">{t('hero', 'card1_title')}</p>
-          </div>
-        </motion.div>
 
-        {/* Card 2: Analytics (Foreground - Moves Faster) */}
-        <motion.div
-          style={{ x: foreX, y: foreY, z: 100 }}
-          className="absolute bottom-[15%] left-[12%] w-64 h-auto rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] rotate-[3deg] border border-white/10 bg-[#1a1a1a] z-20 p-4"
-        >
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
-              <Search className="text-white" size={20} />
+          {/* === LEFT SIDE === */}
+
+          {/* Card 1: Strategy (Mid-ground) */}
+          <motion.div
+            style={{ x: midX, y: midY, z: 50 }}
+            className="absolute top-[15%] left-[5%] 2xl:left-[10%] w-72 h-48 rounded-2xl overflow-hidden shadow-2xl rotate-[-6deg] border border-white/10 z-10 bg-[#111]"
+          >
+            <div className="absolute inset-0 bg-blue-500/10 z-10 mix-blend-overlay"></div>
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+              alt={t('hero', 'card1_title')}
+              className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-black/80 backdrop-blur-sm p-3 border-t border-white/10">
+              <p className="text-xs font-semibold text-white">{t('hero', 'card1_title')}</p>
             </div>
-            <div>
-              <p className="text-sm font-bold text-white">{t('hero', 'card2_title')}</p>
-              <div className="flex gap-1 mt-1">
-                <div className="h-1 w-4 bg-green-500 rounded-full"></div>
-                <div className="h-1 w-6 bg-green-500 rounded-full"></div>
-                <div className="h-1 w-3 bg-green-500 rounded-full"></div>
+          </motion.div>
+
+          {/* Card 2: Analytics (Foreground - Moves Faster) */}
+          <motion.div
+            style={{ x: foreX, y: foreY, z: 100 }}
+            className="absolute bottom-[15%] left-[12%] w-64 h-auto rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] rotate-[3deg] border border-white/10 bg-[#1a1a1a] z-20 p-4"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                <Search className="text-white" size={20} />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-white">{t('hero', 'card2_title')}</p>
+                <div className="flex gap-1 mt-1">
+                  <div className="h-1 w-4 bg-green-500 rounded-full"></div>
+                  <div className="h-1 w-6 bg-green-500 rounded-full"></div>
+                  <div className="h-1 w-3 bg-green-500 rounded-full"></div>
+                </div>
               </div>
             </div>
-          </div>
-          <p className="text-xs text-gray-300 leading-relaxed">{t('hero', 'card2_desc')}</p>
-        </motion.div>
+            <p className="text-xs text-gray-300 leading-relaxed">{t('hero', 'card2_desc')}</p>
+          </motion.div>
 
 
-        {/* === RIGHT SIDE === */}
+          {/* === RIGHT SIDE === */}
 
-        {/* Card 3: Office/Work (Mid-ground) */}
-        <motion.div
-          style={{ x: midX, y: midY, z: 50 }}
-          className="absolute top-[20%] right-[5%] 2xl:right-[10%] w-80 h-64 rounded-xl overflow-hidden shadow-2xl rotate-[6deg] border border-white/10 z-10 bg-[#111]"
-        >
-          <div className="absolute inset-0 bg-emerald-500/10 z-10 mix-blend-overlay"></div>
-          <img
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
-            alt={t('hero', 'card3_title')}
-            className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
-          />
-        </motion.div>
+          {/* Card 3: Office/Work (Mid-ground) */}
+          <motion.div
+            style={{ x: midX, y: midY, z: 50 }}
+            className="absolute top-[20%] right-[5%] 2xl:right-[10%] w-80 h-64 rounded-xl overflow-hidden shadow-2xl rotate-[6deg] border border-white/10 z-10 bg-[#111]"
+          >
+            <div className="absolute inset-0 bg-emerald-500/10 z-10 mix-blend-overlay"></div>
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+              alt={t('hero', 'card3_title')}
+              className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+            />
+          </motion.div>
 
-        {/* Card 4: Automation (Foreground - Moves Faster) */}
-        <motion.div
-          style={{ x: foreX, y: foreY, z: 100 }}
-          className="absolute bottom-[25%] right-[12%] w-64 bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-green-500/30 p-4 rotate-[-3deg] shadow-[0_0_30px_rgba(34,197,94,0.15)] z-20"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 shadow-inner">
-              <Workflow size={20} />
+          {/* Card 4: Automation (Foreground - Moves Faster) */}
+          <motion.div
+            style={{ x: foreX, y: foreY, z: 100 }}
+            className="absolute bottom-[25%] right-[12%] w-64 bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl border border-green-500/30 p-4 rotate-[-3deg] shadow-[0_0_30px_rgba(34,197,94,0.15)] z-20"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 shadow-inner">
+                <Workflow size={20} />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-white">{t('hero', 'card4_title')}</p>
+                <p className="text-xs text-green-400 font-medium mt-1">{t('hero', 'card4_desc')}</p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm font-bold text-white">{t('hero', 'card4_title')}</p>
-              <p className="text-xs text-green-400 font-medium mt-1">{t('hero', 'card4_desc')}</p>
-            </div>
-          </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
 
       {/* Contrast layer to keep title readable over moving cards */}
       <div

@@ -2,13 +2,15 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './lib/i18n/LanguageContext';
 import { Hero } from './components/Hero';
-import { Services } from './components/Services';
-import { Comparison } from './components/Comparison';
-import { Pricing } from './components/Pricing';
-import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import { Admin } from './components/Admin';
 import { motion, useScroll, useSpring } from 'framer-motion';
+
+// Lazy loading below-the-fold components to improve mobile load time
+const Services = React.lazy(() => import('./components/Services').then(module => ({ default: module.Services })));
+const Comparison = React.lazy(() => import('./components/Comparison').then(module => ({ default: module.Comparison })));
+const Pricing = React.lazy(() => import('./components/Pricing').then(module => ({ default: module.Pricing })));
+const Footer = React.lazy(() => import('./components/Footer').then(module => ({ default: module.Footer })));
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -27,11 +29,15 @@ const Home = () => {
       <Navbar />
       <main className="overflow-hidden">
         <Hero />
-        <Comparison />
-        <Services />
-        <Pricing />
+        <React.Suspense fallback={<div className="h-screen flex items-center justify-center bg-[#050505]"><div className="animate-spin h-8 w-8 border-t-2 border-indigo-500 rounded-full"></div></div>}>
+          <Comparison />
+          <Services />
+          <Pricing />
+        </React.Suspense>
       </main>
-      <Footer />
+      <React.Suspense fallback={<div className="h-32 bg-[#050505]"></div>}>
+        <Footer />
+      </React.Suspense>
     </div>
   )
 }
