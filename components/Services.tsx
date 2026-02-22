@@ -33,7 +33,7 @@ export const Services: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8 }}
           className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8"
         >
@@ -51,8 +51,8 @@ export const Services: React.FC = () => {
               key={index}
               initial={{ opacity: 0, rotateX: 45, y: 50 }}
               whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ delay: index * 0.1, duration: 0.6, type: "spring", bounce: 0.3 }}
               className="group relative p-8 h-full min-h-[400px] flex flex-col justify-between border border-white/10 rounded-xl bg-[#0a0a0a] hover:bg-[#0f0f0f] transition-colors hover:border-indigo-500/30"
             >
               <div>

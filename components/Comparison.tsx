@@ -14,7 +14,7 @@ export const Comparison: React.FC = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.8 }}
                     className="mb-24 md:flex items-end justify-between"
                 >
@@ -32,10 +32,10 @@ export const Comparison: React.FC = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {/* The Old Way */}
                     <motion.div
-                        initial={{ opacity: 0, x: -100 }}
+                        initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                         className="p-8 md:p-12 rounded-2xl border border-red-900/20 bg-gradient-to-b from-red-900/5 to-transparent relative overflow-hidden group"
                     >
                         <div className="absolute top-0 right-0 p-4 opacity-20 transition-transform duration-700 group-hover:scale-110">
@@ -61,10 +61,10 @@ export const Comparison: React.FC = () => {
 
                     {/* The Internova Way */}
                     <motion.div
-                        initial={{ opacity: 0, x: 100 }}
+                        initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 1, ease: "easeOut" }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                         className="p-8 md:p-12 rounded-2xl border border-indigo-500/30 bg-gradient-to-b from-indigo-900/10 to-transparent relative overflow-hidden shadow-[0_0_50px_-12px_rgba(99,102,241,0.1)] group"
                     >
                         <div className="absolute top-0 right-0 p-4 opacity-20 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12">

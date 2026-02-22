@@ -43,7 +43,7 @@ export const Pricing: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-24"
         >
@@ -62,12 +62,11 @@ export const Pricing: React.FC = () => {
               key={index}
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: index * 0.1, duration: 0.6, type: "spring", stiffness: 100 }}
-              whileHover={{ y: -10, transition: { duration: 0.2 } }}
               className={`relative p-8 rounded-2xl border ${plan.highlight
-                  ? 'border-indigo-500 bg-indigo-900/10 shadow-[0_0_50px_-12px_rgba(99,102,241,0.2)]'
-                  : 'border-white/10 bg-[#0a0a0a]'
+                ? 'border-indigo-500 bg-indigo-900/10 shadow-[0_0_50px_-12px_rgba(99,102,241,0.2)]'
+                : 'border-white/10 bg-[#0a0a0a]'
                 } flex flex-col`}
             >
               {plan.highlight && (
@@ -101,8 +100,8 @@ export const Pricing: React.FC = () => {
                 <a
                   href="#contact"
                   className={`block w-full py-4 rounded-lg font-bold text-sm tracking-widest uppercase text-center transition-all ${plan.highlight
-                      ? 'bg-white text-black hover:bg-gray-200'
-                      : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                    ? 'bg-white text-black hover:bg-gray-200'
+                    : 'bg-indigo-600 text-white hover:bg-indigo-700'
                     }`}
                 >
                   {t('pricing', 'schedule_btn')}
