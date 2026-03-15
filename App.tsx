@@ -9,27 +9,14 @@ import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import { Admin } from './components/Admin';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { AnimatedProgressBar } from './components/AnimatedProgressBar';
 
 const HomeContent = () => {
-  const { scrollYProgress } = useScroll();
-  const { isMobile } = useDevice();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   return (
     <div className="relative min-h-screen bg-[#050505] text-white selection:bg-indigo-500 selection:text-white">
-      {!isMobile && (
-        <motion.div
-          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 origin-left z-50 pointer-events-none"
-          style={{ scaleX }}
-        />
-      )}
+      <AnimatedProgressBar />
       <Navbar />
-      <main className="overflow-hidden">
+      <main>
         <Hero />
         <Comparison />
         <Services />

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useDevice } from '../lib/DeviceContext';
 
 export const CustomCursor: React.FC = () => {
+  const { isMobile } = useDevice();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorVariant, setCursorVariant] = useState("default");
+
+  if (isMobile) return null;
 
   useEffect(() => {
     const mouseMove = (e: MouseEvent) => {
@@ -17,12 +21,12 @@ export const CustomCursor: React.FC = () => {
 
     // Check for hoverable elements to change cursor state
     const handleMouseOver = (e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
-            setCursorVariant("text");
-        } else {
-            setCursorVariant("default");
-        }
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
+        setCursorVariant("text");
+      } else {
+        setCursorVariant("default");
+      }
     };
 
     window.addEventListener("mouseover", handleMouseOver);
