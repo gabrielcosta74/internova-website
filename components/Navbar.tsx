@@ -10,7 +10,7 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -27,31 +27,31 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <nav
-        className={`fixed w-full z-40 transition-all duration-300 ${isScrolled ? 'py-4 bg-[#050505]/80 backdrop-blur-md border-b border-white/5' : 'py-8 bg-transparent'
+        className={`fixed w-full z-40 transition-all duration-300 ${isScrolled ? 'py-4 bg-white/90 backdrop-blur-md shadow-sm' : 'py-6 bg-transparent'
           }`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="text-2xl font-bold tracking-tighter uppercase cursor-pointer" onClick={() => scrollTo('top')}>
-            Inter<span className="text-indigo-500">nova</span>.
+          <div className="text-2xl font-bold tracking-tighter cursor-pointer text-gray-900" onClick={() => scrollTo('top')}>
+            Inter<span className="text-brand">nova</span>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollTo('services')} className="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest transition-colors">{t('nav', 'consulting')}</button>
-            <button onClick={() => scrollTo('comparison')} className="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest transition-colors">{t('nav', 'results')}</button>
-            <button onClick={() => scrollTo('pricing')} className="text-sm font-medium text-gray-300 hover:text-white uppercase tracking-widest transition-colors">{t('nav', 'solutions')}</button>
+            <button onClick={() => scrollTo('services')} className="text-sm font-semibold text-gray-600 hover:text-brand transition-colors">{t('nav', 'consulting')}</button>
+            <button onClick={() => scrollTo('comparison')} className="text-sm font-semibold text-gray-600 hover:text-brand transition-colors">{t('nav', 'results')}</button>
+            <button onClick={() => scrollTo('pricing')} className="text-sm font-semibold text-gray-600 hover:text-brand transition-colors">{t('nav', 'solutions')}</button>
 
             {/* Lang Switcher */}
-            <div className="flex items-center gap-2 bg-white/5 tracking-widest rounded-full px-3 py-1 border border-white/10 text-xs font-semibold">
-              <Globe size={14} className="text-gray-400" />
-              <button onClick={() => setLanguage('pt')} className={`transition-colors ${language === 'pt' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}>PT</button>
-              <span className="text-gray-600">|</span>
-              <button onClick={() => setLanguage('en')} className={`transition-colors ${language === 'en' ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}>EN</button>
+            <div className="flex items-center gap-2 bg-gray-100 rounded-full px-3 py-1.5 text-xs font-semibold">
+              <Globe size={14} className="text-gray-500" />
+              <button onClick={() => setLanguage('pt')} className={`transition-colors ${language === 'pt' ? 'text-brand' : 'text-gray-500 hover:text-gray-700'}`}>PT</button>
+              <span className="text-gray-300">|</span>
+              <button onClick={() => setLanguage('en')} className={`transition-colors ${language === 'en' ? 'text-brand' : 'text-gray-500 hover:text-gray-700'}`}>EN</button>
             </div>
 
             <button
               onClick={() => scrollTo('contact')}
-              className="px-6 py-2 bg-white text-black text-sm font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors rounded-sm"
+              className="px-6 py-2.5 bg-brand text-white text-sm font-bold hover:bg-brand-hover transition-colors rounded-full shadow-md hover:shadow-lg"
             >
               {t('nav', 'schedule')}
             </button>
@@ -59,7 +59,7 @@ export const Navbar: React.FC = () => {
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden z-50">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-900 p-2">
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -73,23 +73,23 @@ export const Navbar: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-[#050505] z-30 flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 bg-white z-30 flex flex-col items-center justify-center gap-8 md:hidden"
           >
-            <button onClick={() => scrollTo('services')} className="text-2xl font-light text-white uppercase tracking-widest">{t('nav', 'consulting')}</button>
-            <button onClick={() => scrollTo('comparison')} className="text-2xl font-light text-white uppercase tracking-widest">{t('nav', 'results')}</button>
-            <button onClick={() => scrollTo('pricing')} className="text-2xl font-light text-white uppercase tracking-widest">{t('nav', 'solutions')}</button>
+            <button onClick={() => scrollTo('services')} className="text-2xl font-bold text-gray-900">{t('nav', 'consulting')}</button>
+            <button onClick={() => scrollTo('comparison')} className="text-2xl font-bold text-gray-900">{t('nav', 'results')}</button>
+            <button onClick={() => scrollTo('pricing')} className="text-2xl font-bold text-gray-900">{t('nav', 'solutions')}</button>
 
             {/* Mobile Lang Switcher */}
-            <div className="flex items-center gap-4 mt-4 bg-white/5 tracking-widest rounded-full px-6 py-2 border border-white/10 text-sm font-semibold">
-              <Globe size={18} className="text-gray-400" />
-              <button onClick={() => setLanguage('pt')} className={`transition-colors ${language === 'pt' ? 'text-white' : 'text-gray-500'}`}>PT</button>
-              <span className="text-gray-600">|</span>
-              <button onClick={() => setLanguage('en')} className={`transition-colors ${language === 'en' ? 'text-white' : 'text-gray-500'}`}>EN</button>
+            <div className="flex items-center gap-4 mt-4 bg-gray-100 rounded-full px-6 py-3 text-sm font-semibold">
+              <Globe size={18} className="text-gray-500" />
+              <button onClick={() => setLanguage('pt')} className={`transition-colors ${language === 'pt' ? 'text-brand' : 'text-gray-500'}`}>PT</button>
+              <span className="text-gray-300">|</span>
+              <button onClick={() => setLanguage('en')} className={`transition-colors ${language === 'en' ? 'text-brand' : 'text-gray-500'}`}>EN</button>
             </div>
 
             <button
               onClick={() => scrollTo('contact')}
-              className="text-2xl font-bold text-indigo-500 uppercase tracking-widest mt-4"
+              className="text-xl font-bold text-white bg-brand rounded-full px-8 py-4 mt-4 shadow-lg"
             >
               {t('nav', 'schedule')}
             </button>

@@ -2,18 +2,15 @@ import React from 'react';
 import { Check, Zap, Target, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../lib/i18n/LanguageContext';
-import { useDevice } from '../lib/DeviceContext';
-
 
 export const Pricing: React.FC = () => {
   const { t } = useLanguage();
-  const { isMobile } = useDevice();
 
   const plans = [
     {
       name: t('pricing', 'p1_name'),
       tagline: t('pricing', 'p1_tagline'),
-      icon: <Target className="text-indigo-400" size={24} />,
+      icon: <Target className="text-blue-600" size={24} />,
       description: t('pricing', 'p1_desc'),
       features: t('pricing', 'p1_features') as unknown as string[],
       highlight: false,
@@ -22,7 +19,7 @@ export const Pricing: React.FC = () => {
     {
       name: t('pricing', 'p2_name'),
       tagline: t('pricing', 'p2_tagline'),
-      icon: <Zap className="text-yellow-400" size={24} />,
+      icon: <Zap className="text-brand" size={24} />,
       description: t('pricing', 'p2_desc'),
       features: t('pricing', 'p2_features') as unknown as string[],
       highlight: true,
@@ -31,7 +28,7 @@ export const Pricing: React.FC = () => {
     {
       name: t('pricing', 'p3_name'),
       tagline: t('pricing', 'p3_tagline'),
-      icon: <TrendingUp className="text-purple-400" size={24} />,
+      icon: <TrendingUp className="text-emerald-600" size={24} />,
       description: t('pricing', 'p3_desc'),
       features: t('pricing', 'p3_features') as unknown as string[],
       highlight: false,
@@ -39,101 +36,97 @@ export const Pricing: React.FC = () => {
     }
   ];
 
-  const MotionOrDiv = isMobile ? 'div' : motion.div;
-
   return (
-    <section id="pricing" className="py-32 bg-[#050505] border-t border-white/5">
+    <section id="pricing" className="py-24 bg-white">
       <div className="container mx-auto px-6">
-        <MotionOrDiv
-          {...(!isMobile && {
-            initial: { opacity: 0, scale: 0.9 },
-            whileInView: { opacity: 1, scale: 1 },
-            viewport: { once: true, amount: 0.1 },
-            transition: { duration: 0.8 }
-          })}
-          className="text-center mb-24"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tighter">
-            {t('pricing', 'title1')} <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">{t('pricing', 'title2')}</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            {t('pricing', 'subtitle')}
-          </p>
-        </MotionOrDiv>
+        <div className="text-center mb-20 max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-gray-900">
+              {t('pricing', 'title1')} <br className="hidden md:block" />
+              <span className="text-brand">{t('pricing', 'title2')}</span>
+            </h2>
+            <p className="text-xl text-gray-600 font-medium">
+              {t('pricing', 'subtitle')}
+            </p>
+          </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
-            <MotionOrDiv
+            <motion.div
               key={index}
-              {...(!isMobile && {
-                initial: { opacity: 0, y: 50, scale: 0.9 },
-                whileInView: { opacity: 1, y: 0, scale: 1 },
-                viewport: { once: true, amount: 0.1 },
-                transition: { delay: index * 0.1, duration: 0.6, type: "spring", stiffness: 100 }
-              })}
-              className={`relative p-8 rounded-2xl border ${plan.highlight
-                ? 'border-indigo-500 bg-indigo-900/10 shadow-[0_0_50px_-12px_rgba(99,102,241,0.2)]'
-                : 'border-white/10 bg-[#0a0a0a]'
-                } flex flex-col`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className={`relative p-10 rounded-3xl border flex flex-col transition-all duration-300 ${plan.highlight
+                ? 'border-brand bg-white shadow-floating scale-100 md:scale-105 z-10'
+                : 'border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300'
+                }`}
             >
               {plan.highlight && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-indigo-500 text-white text-xs font-bold uppercase tracking-widest rounded-full">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1.5 bg-brand text-white text-xs font-bold uppercase tracking-widest rounded-full shadow-md">
                   {t('pricing', 'popular_badge')}
                 </div>
               )}
 
-              <div className="mb-6">
-                <div className="mb-4">{plan.icon}</div>
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <p className="text-indigo-400 text-sm font-semibold mb-4 leading-snug">{plan.tagline}</p>
-                <p className="text-gray-400 text-xs leading-relaxed">{plan.description}</p>
+              <div className="mb-8">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${plan.highlight ? 'bg-brand/10' : 'bg-white border border-gray-200'}`}>
+                   {plan.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                <p className={`${plan.highlight ? 'text-brand' : 'text-gray-600'} text-sm font-bold uppercase tracking-wider mb-4`}>{plan.tagline}</p>
+                <p className="text-gray-500 font-medium leading-relaxed">{plan.description}</p>
               </div>
 
-              <div className="h-px w-full bg-white/10 mb-8" />
+              <div className="h-px w-full bg-gray-200 mb-8" />
 
-              <ul className="space-y-4 mb-8 flex-1">
+              <ul className="space-y-4 mb-10 flex-1">
                 {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-gray-300">
-                    <Check size={16} className={plan.highlight ? "text-indigo-400" : "text-gray-500"} />
+                  <li key={idx} className="flex items-start gap-3 text-gray-700 font-medium">
+                    <div className={`mt-1 p-0.5 rounded-full ${plan.highlight ? 'bg-brand/10 text-brand' : 'bg-gray-200 text-gray-500'}`}>
+                        <Check size={14} />
+                    </div>
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <div className="mt-auto">
-                <div className="mb-6 p-3 rounded-lg bg-white/5 border border-white/5 italic text-xs text-center text-gray-400">
+                <div className="mb-6 p-4 rounded-xl bg-gray-100 italic text-sm text-center text-gray-600 font-medium">
                   "{plan.benefit}"
                 </div>
                 <a
                   href="#contact"
-                  className={`block w-full py-4 rounded-lg font-bold text-sm tracking-widest uppercase text-center transition-all ${plan.highlight
-                    ? 'bg-white text-black hover:bg-gray-200'
-                    : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                  className={`block w-full py-4 rounded-full font-bold text-base text-center transition-all shadow-sm hover:shadow-md ${plan.highlight
+                    ? 'bg-brand text-white hover:bg-brand-hover'
+                    : 'bg-white text-gray-900 border border-gray-200 hover:border-gray-300'
                     }`}
                 >
                   {t('pricing', 'schedule_btn')}
                 </a>
               </div>
-            </MotionOrDiv>
+            </motion.div>
           ))}
         </div>
 
-        <MotionOrDiv
-          {...(!isMobile && {
-            initial: { opacity: 0 },
-            whileInView: { opacity: 1 },
-            transition: { delay: 0.8 }
-          })}
-          className="mt-16 text-center space-y-2"
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-20 text-center space-y-3"
         >
-          <p className="text-gray-400 font-medium">
+          <p className="text-gray-900 font-bold text-lg">
             {t('pricing', 'custom_title')}
           </p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 font-medium max-w-xl mx-auto">
             {t('pricing', 'custom_desc')}
           </p>
-        </MotionOrDiv>
+        </motion.div>
       </div>
     </section>
   );

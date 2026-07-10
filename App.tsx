@@ -13,7 +13,7 @@ import { AnimatedProgressBar } from './components/AnimatedProgressBar';
 
 const HomeContent = () => {
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white selection:bg-indigo-500 selection:text-white">
+    <div className="relative min-h-screen bg-gray-50 text-gray-900 selection:bg-brand selection:text-white">
       <AnimatedProgressBar />
       <Navbar />
       <main>

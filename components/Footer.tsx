@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Instagram, Linkedin, Mail, ArrowUpRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useLanguage } from '../lib/i18n/LanguageContext';
 
@@ -21,19 +21,28 @@ export const Footer: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const { error } = await supabase
-        .from('leads')
-        .insert([{
-          name: formData.name,
-          email: formData.email,
-          challenge: formData.challenge
-        }]);
+      const lead = {
+        name: formData.name,
+        email: formData.email,
+        challenge: formData.challenge,
+      };
+
+      const { error } = await supabase.from('leads').insert([lead]);
 
       if (error) throw error;
 
+      try {
+        const { error: fnError } = await supabase.functions.invoke('notify-lead', {
+          body: lead,
+        });
+        if (fnError) console.error('Falha ao enviar email de notificação:', fnError);
+      } catch (notifyError) {
+        console.error('Falha ao enviar email de notificação:', notifyError);
+      }
+
       setStatus('success');
       setFormData({ name: '', email: '', challenge: '' });
-      setTimeout(() => setStatus('idle'), 5000); // Reset after 5s
+      setTimeout(() => setStatus('idle'), 5000); 
 
     } catch (error: any) {
       console.error('Error submitting form:', error);
@@ -43,34 +52,34 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer id="contact" className="bg-[#050505] border-t border-white/5 pt-32 pb-12">
+    <footer id="contact" className="bg-white border-t border-gray-100 pt-32 pb-12">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-32">
           <div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-tight">
+            <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-8 text-gray-900 leading-[1.1]">
               {t('footer', 'title1')} <br />
-              <span className="text-indigo-500">{t('footer', 'title2')}</span>
+              <span className="text-brand">{t('footer', 'title2')}</span>
             </h2>
-            <p className="text-xl text-gray-400 mb-8 max-w-md">
+            <p className="text-xl text-gray-600 mb-8 max-w-md font-medium">
               {t('footer', 'subtitle')}
             </p>
             <a
               href="mailto:geral@internova.pt"
-              className="inline-flex items-center gap-2 text-2xl font-semibold border-b border-white pb-1 hover:text-indigo-400 hover:border-indigo-400 transition-colors"
+              className="inline-flex items-center gap-2 text-2xl font-bold text-gray-900 border-b-2 border-gray-900 pb-1 hover:text-brand hover:border-brand transition-colors"
             >
-              geral@internova.pt <ArrowUpRight size={24} />
+              geral@internova.pt <ArrowUpRight size={28} />
             </a>
           </div>
 
           <div className="flex flex-col justify-end items-start md:items-end">
-            <div className="p-8 rounded-2xl bg-white/5 border border-white/10 w-full max-w-md">
-              <h3 className="text-xl font-bold mb-6">{t('footer', 'form_title')}</h3>
-              <form className="space-y-4" onSubmit={handleSubmit}>
+            <div className="p-10 rounded-3xl bg-gray-50 border border-gray-100 w-full max-w-md shadow-sm">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">{t('footer', 'form_title')}</h3>
+              <form className="space-y-5" onSubmit={handleSubmit}>
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">{t('footer', 'form_name')}</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">{t('footer', 'form_name')}</label>
                   <input
                     type="text"
-                    className="w-full bg-[#050505] border border-white/10 rounded p-3 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full bg-white border border-gray-200 rounded-xl p-4 text-gray-900 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all"
                     placeholder={t('footer', 'form_name_placeholder')}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -78,10 +87,10 @@ export const Footer: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">{t('footer', 'form_email')}</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">{t('footer', 'form_email')}</label>
                   <input
                     type="email"
-                    className="w-full bg-[#050505] border border-white/10 rounded p-3 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full bg-white border border-gray-200 rounded-xl p-4 text-gray-900 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all"
                     placeholder={t('footer', 'form_email_placeholder')}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -89,9 +98,9 @@ export const Footer: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2">{t('footer', 'form_challenge')}</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">{t('footer', 'form_challenge')}</label>
                   <textarea
-                    className="w-full bg-[#050505] border border-white/10 rounded p-3 text-white focus:outline-none focus:border-indigo-500 transition-colors h-24"
+                    className="w-full bg-white border border-gray-200 rounded-xl p-4 text-gray-900 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all h-32 resize-none"
                     placeholder={t('footer', 'form_challenge_placeholder')}
                     value={formData.challenge}
                     onChange={(e) => setFormData({ ...formData, challenge: e.target.value })}
@@ -100,15 +109,15 @@ export const Footer: React.FC = () => {
                 </div>
 
                 {status === 'error' && (
-                  <div className="flex items-center gap-2 p-3 rounded bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                    <AlertCircle size={16} className="shrink-0" />
+                  <div className="flex items-center gap-2 p-4 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm font-medium">
+                    <AlertCircle size={18} className="shrink-0" />
                     <p>{errorMessage}</p>
                   </div>
                 )}
 
                 {status === 'success' && (
-                  <div className="flex items-center gap-2 p-3 rounded bg-green-500/10 border border-green-500/20 text-green-400 text-sm">
-                    <CheckCircle2 size={16} className="shrink-0" />
+                  <div className="flex items-center gap-2 p-4 rounded-xl bg-green-50 border border-green-100 text-green-700 text-sm font-medium">
+                    <CheckCircle2 size={18} className="shrink-0" />
                     <p>{t('footer', 'form_success')}</p>
                   </div>
                 )}
@@ -116,7 +125,7 @@ export const Footer: React.FC = () => {
                 <button
                   type="submit"
                   disabled={status === 'loading' || status === 'success'}
-                  className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase tracking-widest rounded transition-all disabled:opacity-50 flex justify-center items-center gap-2"
+                  className="w-full py-4 bg-brand hover:bg-brand-hover text-white font-bold rounded-full transition-all disabled:opacity-50 flex justify-center items-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5"
                 >
                   {status === 'loading' ? (
                     <><Loader2 size={18} className="animate-spin" /> {t('footer', 'form_submitting')}</>
@@ -131,17 +140,14 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-end pt-12 border-t border-white/10">
-          <div className="mb-8 md:mb-0">
-            <div className="text-3xl font-bold tracking-tighter uppercase mb-2">
-              Inter<span className="text-indigo-500">nova</span>.
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100">
+          <div className="mb-4 md:mb-0">
+            <div className="text-2xl font-bold tracking-tighter text-gray-900 mb-1">
+              Inter<span className="text-brand">nova</span>
             </div>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-500 text-sm font-medium">
               &copy; {new Date().getFullYear()} Internova Studio. {t('footer', 'rights')}
             </p>
-          </div>
-
-          <div className="flex gap-6">
           </div>
         </div>
       </div>

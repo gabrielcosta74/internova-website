@@ -2,110 +2,80 @@ import React from 'react';
 import { X, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../lib/i18n/LanguageContext';
-import { useDevice } from '../lib/DeviceContext';
 
 export const Comparison: React.FC = () => {
     const { t } = useLanguage();
-    const { isMobile } = useDevice();
 
     const traditionalPoints = t('comparison', 'traditional_points') as unknown as string[];
     const internovaPoints = t('comparison', 'internova_points') as unknown as string[];
 
-    // Wrapper for conditionally animating or leaving static
-    const MotionOrDiv = isMobile ? 'div' : motion.div;
-    const MotionOrLi = isMobile ? 'li' : motion.li;
-
     return (
-        <section id="comparison" className="py-32 bg-[#050505] relative border-b border-white/5 overflow-hidden">
+        <section id="comparison" className="py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-6">
-                <MotionOrDiv
-                    {...(!isMobile && {
-                        initial: { opacity: 0, y: 50 },
-                        whileInView: { opacity: 1, y: 0 },
-                        viewport: { once: true, amount: 0.1 },
-                        transition: { duration: 0.8 }
-                    })}
-                    className="mb-24 md:flex items-end justify-between"
-                >
-                    <div className="max-w-2xl">
-                        <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tighter">
-                            {t('comparison', 'title1')} <br />
-                            <span className="text-gray-500">{t('comparison', 'title2')}</span> {t('comparison', 'title3')}
+                <div className="mb-20 text-center max-w-3xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-gray-900">
+                            {t('comparison', 'title1')} <br className="hidden md:block" />
+                            <span className="text-brand">{t('comparison', 'title2')}</span> {t('comparison', 'title3')}
                         </h2>
-                        <p className="text-gray-400 text-lg">
+                        <p className="text-xl text-gray-600 font-medium">
                             {t('comparison', 'subtitle')}
                         </p>
-                    </div>
-                </MotionOrDiv>
+                    </motion.div>
+                </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
                     {/* The Old Way */}
-                    <MotionOrDiv
-                        {...(!isMobile && {
-                            initial: { opacity: 0, x: -50 },
-                            whileInView: { opacity: 1, x: 0 },
-                            viewport: { once: true, amount: 0.1 },
-                            transition: { duration: 0.8, ease: "easeOut" }
-                        })}
-                        className="p-8 md:p-12 rounded-2xl border border-red-900/20 bg-gradient-to-b from-red-900/5 to-transparent relative overflow-hidden group"
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.6 }}
+                        className="p-10 rounded-3xl border border-gray-200 bg-gray-50 relative overflow-hidden group"
                     >
-                        <div className="absolute top-0 right-0 p-4 opacity-20 transition-transform duration-700 group-hover:scale-110">
-                            <X size={120} className="text-red-500" />
+                        <div className="absolute top-0 right-0 p-6 opacity-10 transition-transform duration-700 group-hover:scale-110">
+                            <X size={120} className="text-gray-400" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-8 text-red-200">{t('comparison', 'traditional_title')}</h3>
-                        <ul className="space-y-6">
+                        <h3 className="text-2xl font-bold mb-8 text-gray-700">{t('comparison', 'traditional_title')}</h3>
+                        <ul className="space-y-6 relative z-10">
                             {traditionalPoints.map((item, idx) => (
-                                <MotionOrLi
-                                    key={idx}
-                                    {...(!isMobile && {
-                                        initial: { opacity: 0, x: -20 },
-                                        whileInView: { opacity: 1, x: 0 },
-                                        viewport: { once: true },
-                                        transition: { delay: 0.5 + (idx * 0.1) }
-                                    })}
-                                    className="flex items-start gap-4 text-gray-400"
-                                >
-                                    <X size={20} className="text-red-500 shrink-0 mt-1" />
-                                    <span>{item}</span>
-                                </MotionOrLi>
-                            ))}
-                        </ul>
-                    </MotionOrDiv>
-
-                    {/* The Internova Way */}
-                    <MotionOrDiv
-                        {...(!isMobile && {
-                            initial: { opacity: 0, x: 50 },
-                            whileInView: { opacity: 1, x: 0 },
-                            viewport: { once: true, amount: 0.1 },
-                            transition: { duration: 0.8, ease: "easeOut" }
-                        })}
-                        className="p-8 md:p-12 rounded-2xl border border-indigo-500/30 bg-gradient-to-b from-indigo-900/10 to-transparent relative overflow-hidden shadow-[0_0_50px_-12px_rgba(99,102,241,0.1)] group"
-                    >
-                        <div className="absolute top-0 right-0 p-4 opacity-20 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12">
-                            <Check size={120} className="text-indigo-500" />
-                        </div>
-                        <h3 className="text-2xl font-bold mb-8 text-indigo-200">{t('comparison', 'internova_title')}</h3>
-                        <ul className="space-y-6">
-                            {internovaPoints.map((item, idx) => (
-                                <MotionOrLi
-                                    key={idx}
-                                    {...(!isMobile && {
-                                        initial: { opacity: 0, x: 20 },
-                                        whileInView: { opacity: 1, x: 0 },
-                                        viewport: { once: true },
-                                        transition: { delay: 0.5 + (idx * 0.1) }
-                                    })}
-                                    className="flex items-start gap-4 text-white font-medium"
-                                >
-                                    <div className="bg-indigo-500/20 p-1 rounded-full">
-                                        <Check size={16} className="text-indigo-400 shrink-0" />
+                                <li key={idx} className="flex items-start gap-4 text-gray-600 font-medium">
+                                    <div className="bg-gray-200 p-1 rounded-full shrink-0 mt-0.5">
+                                      <X size={16} className="text-gray-500" />
                                     </div>
                                     <span>{item}</span>
-                                </MotionOrLi>
+                                </li>
                             ))}
                         </ul>
-                    </MotionOrDiv>
+                    </motion.div>
+
+                    {/* The Internova Way */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.1 }}
+                        transition={{ duration: 0.6 }}
+                        className="p-10 rounded-3xl border border-brand/20 bg-brand/5 relative overflow-hidden shadow-sm hover:shadow-floating transition-shadow group"
+                    >
+                        <div className="absolute top-0 right-0 p-6 opacity-10 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12">
+                            <Check size={120} className="text-brand" />
+                        </div>
+                        <h3 className="text-2xl font-bold mb-8 text-brand">{t('comparison', 'internova_title')}</h3>
+                        <ul className="space-y-6 relative z-10">
+                            {internovaPoints.map((item, idx) => (
+                                <li key={idx} className="flex items-start gap-4 text-gray-900 font-bold">
+                                    <div className="bg-brand text-white p-1 rounded-full shrink-0 mt-0.5 shadow-sm">
+                                        <Check size={16} />
+                                    </div>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </motion.div>
                 </div>
             </div>
         </section>

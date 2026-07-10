@@ -1,0 +1,6 @@
+project_id = "kwwnowmfdhkwdrnygiph"
+
+[functions.notify-lead]
+# A função é chamada pelo site público (browser), por isso não exige JWT.
+# A validação dos campos é feita dentro da própria função.
+verify_jwt = false
