@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Search, BarChart3, Globe, Smartphone, Activity } from 'lucide-react';
-import { useLanguage } from '../lib/i18n/LanguageContext';
+import { ArrowRight, Search, BarChart3, Globe, Smartphone } from 'lucide-react';
+import { useOnboarding } from '../lib/OnboardingContext';
 
 const verbs = [
   { 
@@ -39,7 +39,7 @@ const verbs = [
 ];
 
 export const Hero: React.FC = () => {
-  const { t } = useLanguage();
+  const { openOnboarding } = useOnboarding();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -91,13 +91,14 @@ export const Hero: React.FC = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <a
-                  href="#pricing"
+                <button
+                  type="button"
+                  onClick={() => openOnboarding({ intent: 'start' })}
                   className="group w-full sm:w-auto px-8 py-4 bg-brand text-white font-bold text-base rounded-full flex items-center justify-center gap-2 hover:bg-brand-hover transition-all shadow-lg hover:shadow-brand/30 hover:-translate-y-0.5"
                 >
                   Começar agora 
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                </a>
+                </button>
                 <p className="text-sm text-gray-500 font-medium">
                   Consulta inicial gratuita.
                 </p>

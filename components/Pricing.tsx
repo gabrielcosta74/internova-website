@@ -2,9 +2,11 @@ import React from 'react';
 import { Check, Zap, Target, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../lib/i18n/LanguageContext';
+import { useOnboarding } from '../lib/OnboardingContext';
 
 export const Pricing: React.FC = () => {
   const { t } = useLanguage();
+  const { openOnboarding } = useOnboarding();
 
   const plans = [
     {
@@ -100,15 +102,16 @@ export const Pricing: React.FC = () => {
                 <div className="mb-6 p-4 rounded-xl bg-gray-100 italic text-sm text-center text-gray-600 font-medium">
                   "{plan.benefit}"
                 </div>
-                <a
-                  href="#contact"
+                <button
+                  type="button"
+                  onClick={() => openOnboarding({ intent: 'schedule', plan: plan.name })}
                   className={`block w-full py-4 rounded-full font-bold text-base text-center transition-all shadow-sm hover:shadow-md ${plan.highlight
                     ? 'bg-brand text-white hover:bg-brand-hover'
                     : 'bg-white text-gray-900 border border-gray-200 hover:border-gray-300'
                     }`}
                 >
                   {t('pricing', 'schedule_btn')}
-                </a>
+                </button>
               </div>
             </motion.div>
           ))}

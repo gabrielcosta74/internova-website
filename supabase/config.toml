@@ -1,4 +1,4 @@
-project_id = "kwwnowmfdhkwdrnygiph"
+project_id = "vaywtenhahxwkqbjqhcx"
 
 [functions.notify-lead]
 # A função é chamada pelo site público (browser), por isso não exige JWT.

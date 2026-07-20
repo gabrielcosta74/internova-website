@@ -25,7 +25,7 @@ O envio é feito por uma Edge Function do Supabase (`notify-lead`) que usa o
 
 ```bash
 supabase login
-supabase link --project-ref kwwnowmfdhkwdrnygiph
+supabase link --project-ref vaywtenhahxwkqbjqhcx
 ```
 
 ### 3. Configurar os secrets
@@ -50,7 +50,7 @@ supabase functions deploy notify-lead
 
 ```bash
 curl -i -X POST \
-  https://kwwnowmfdhkwdrnygiph.supabase.co/functions/v1/notify-lead \
+  https://vaywtenhahxwkqbjqhcx.supabase.co/functions/v1/notify-lead \
   -H "Content-Type: application/json" \
   -d '{"name":"Teste","email":"teste@exemplo.com","challenge":"Quero saber mais."}'
 ```

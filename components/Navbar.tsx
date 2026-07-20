@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../lib/i18n/LanguageContext';
+import { useOnboarding } from '../lib/OnboardingContext';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { openOnboarding } = useOnboarding();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,8 +39,8 @@ export const Navbar: React.FC = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollTo('services')} className="text-sm font-semibold text-gray-600 hover:text-brand transition-colors">{t('nav', 'consulting')}</button>
             <button onClick={() => scrollTo('comparison')} className="text-sm font-semibold text-gray-600 hover:text-brand transition-colors">{t('nav', 'results')}</button>
+            <button onClick={() => scrollTo('services')} className="text-sm font-semibold text-gray-600 hover:text-brand transition-colors">{t('nav', 'consulting')}</button>
             <button onClick={() => scrollTo('pricing')} className="text-sm font-semibold text-gray-600 hover:text-brand transition-colors">{t('nav', 'solutions')}</button>
 
             {/* Lang Switcher */}
@@ -50,7 +52,7 @@ export const Navbar: React.FC = () => {
             </div>
 
             <button
-              onClick={() => scrollTo('contact')}
+              onClick={() => openOnboarding({ intent: 'schedule' })}
               className="px-6 py-2.5 bg-brand text-white text-sm font-bold hover:bg-brand-hover transition-colors rounded-full shadow-md hover:shadow-lg"
             >
               {t('nav', 'schedule')}
@@ -75,8 +77,8 @@ export const Navbar: React.FC = () => {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 bg-white z-30 flex flex-col items-center justify-center gap-8 md:hidden"
           >
-            <button onClick={() => scrollTo('services')} className="text-2xl font-bold text-gray-900">{t('nav', 'consulting')}</button>
             <button onClick={() => scrollTo('comparison')} className="text-2xl font-bold text-gray-900">{t('nav', 'results')}</button>
+            <button onClick={() => scrollTo('services')} className="text-2xl font-bold text-gray-900">{t('nav', 'consulting')}</button>
             <button onClick={() => scrollTo('pricing')} className="text-2xl font-bold text-gray-900">{t('nav', 'solutions')}</button>
 
             {/* Mobile Lang Switcher */}
@@ -88,7 +90,10 @@ export const Navbar: React.FC = () => {
             </div>
 
             <button
-              onClick={() => scrollTo('contact')}
+              onClick={() => {
+                setIsMenuOpen(false);
+                openOnboarding({ intent: 'schedule' });
+              }}
               className="text-xl font-bold text-white bg-brand rounded-full px-8 py-4 mt-4 shadow-lg"
             >
               {t('nav', 'schedule')}

@@ -132,7 +132,7 @@ const CONTENT_SECTIONS: Record<string, { label: string; keys: { key: string; lab
         label: 'Navegação',
         keys: [
             { key: 'consulting', label: 'Link Consultoria' },
-            { key: 'results', label: 'Link Resultados' },
+            { key: 'results', label: 'Link A nossa estratégia' },
             { key: 'solutions', label: 'Link Soluções' },
             { key: 'schedule', label: 'Botão Agendar' },
         ]
@@ -597,7 +597,7 @@ const HeroPreview: React.FC<{ g: (k: string) => string }> = ({ g }) => (
         <div className="flex items-center justify-between px-5 py-3 border-b border-white/5">
             <span className="text-sm font-bold tracking-tighter">Inter<span className="text-indigo-400">nova</span>.</span>
             <div className="flex gap-4">
-                {['Consultoria', 'Resultados', 'Soluções'].map(n => (
+                {['A nossa estratégia', 'Consultoria', 'Soluções'].map(n => (
                     <span key={n} className="text-xs text-gray-500">{n}</span>
                 ))}
             </div>
